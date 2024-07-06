@@ -94,7 +94,6 @@ client.once('ready', () => {
 });
 
 client.on('interactionCreate', async interaction => {
-    if (!interaction.isChatInputCommand() && !interaction.isButton()) return;
 
     const player = players[interaction.user.id];
     const enemy = interaction.customId && interaction.customId.includes('fight') ? enemies.find(e => e.nombre === interaction.customId.split('_')[1]) : null;
@@ -209,8 +208,6 @@ client.on('interactionCreate', async interaction => {
                             .setStyle(ButtonStyle.Success)
                     );
                 await interaction.followUp({ content: `Continúa el combate contra el ${enemy.nombre}. ¿Qué harás ahora?`, components: [buttons] });
-            }
-        }, 5000);
     }
 });
 
